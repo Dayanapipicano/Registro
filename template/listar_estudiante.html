@@ -1,0 +1,32 @@
+
+{%extends "base.html" %}
+
+
+{% block body %}
+
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for estudiante in  page_obj %}
+        <tr>
+            <td>{{ estudiante.id }}</td>
+            <td>{{ estudiante.nombre }}</td>
+            <td>{{ estudiante.apellido }}</td>
+            <td>{{ estudiante.edad }}</td>
+            <td>{{ estudiante.correo }}</td>
+            <!-- <td>{{ cursos.edad }}</td> -->
+            
+            <td>
+                
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

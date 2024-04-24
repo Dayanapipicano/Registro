@@ -16,10 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from apps.usuarios.views import crear_curso,listar_curso
+from apps.usuarios.views import crear_curso,listar_curso,principal, paginacion
+from apps.usuarios import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     
+    path('',principal.as_view(),name='inicio'),
+    path('registrarCompu/',views.registrar,name='registrar'),
+    
+    #LISTAR-PAGINACION
+    path('listar_estudiente', paginacion, name='listar_estudiante'),
     #CURSO
     path('crear_curso', crear_curso, name='crear_curso'),
     path('listar_curso', listar_curso, name='listar_curso'),

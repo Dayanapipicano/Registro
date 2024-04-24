@@ -4,8 +4,10 @@ from django.core.paginator import Paginator
 from django.shortcuts import render, redirect
 from apps.usuarios.models import Curso
 from django.shortcuts import  redirect
-from .models import Estudiante
 from django.views.generic import  ListView
+
+
+
 
 class principal(ListView):
     """
@@ -29,6 +31,24 @@ def registrar(request):
         comp=Estudiante.objects.create(nombre=nombre,apellido=apellido,
                                 correo=correo,edad=edad,cursos=cursos)
         return redirect('/')
+
+
+
+#LISTAR
+
+def paginacion(request):
+    estudiantes = Estudiante.objects.all()
+    
+    paginacion = Paginator(estudiantes,10)
+    
+    page_number = request.GET.get('page')
+    page_obj = paginacion.get_page(page_number)
+    return render(request,'listar_estudiante.html', {'page_obj':page_obj})
+
+
+
+
+
 #CREAR CURSO
 
 def crear_curso(request):
