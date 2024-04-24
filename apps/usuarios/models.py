@@ -7,15 +7,16 @@ class Curso(models.Model):
     
     
 
-class Estudiente(models.Model):
+class Estudiante(models.Model):
     nombre = models.CharField(max_length=50)
     apellido = models.CharField(max_length=50)
     correo = models.EmailField(unique=True)
     fecha_nacimiento = models.DateField()
-    edad = models.models.IntegerField()
+    edad = models.IntegerField()
     estado = models.BooleanField(default=True)
-    curso = models.ForeignKey(Curso, on_delete=models.CASCADE)
+    cursos = models.ForeignKey(Curso, on_delete=models.CASCADE)
     
 
 class Materia(models.Model):
     nombre = models.CharField(max_length=50)
+    estudiantes = models.ManyToManyField(Estudiante)
